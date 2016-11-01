@@ -13,7 +13,7 @@ class Antibiogram < ApplicationRecord
 #			product.save!
 #		end
 
-		antibiogram = Antibiogram.create
+		antibiogram = Antibiogram.create( :name => file.original_filename )
 		searching_for_drugs=true
 		drug_names=[]
 		spreadsheet.each do |row|
