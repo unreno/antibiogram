@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Antibiograms</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th colspan="3">Manage</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @antibiograms.each do |antibiogram| %>
+      <tr>
+        <td><%= antibiogram.id %></td>
+        <td><%= link_to 'Show', antibiogram %></td>
+        <td><%= link_to 'Edit', edit_antibiogram_path(antibiogram) %></td>
+        <td><%= link_to 'Destroy', antibiogram, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%#= link_to 'New Antibiogram', new_antibiogram_path %>
+
+<h2>Import Antibiogram</h2>
+
+<%= form_tag import_antibiograms_path, multipart: true do %>
+	<%= file_field_tag :file %>
+	<%= submit_tag "Import" %>
+<% end %>

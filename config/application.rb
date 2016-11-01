@@ -1,5 +1,8 @@
 require_relative 'boot'
 
+#require 'csv'	#	for csv / roo usage
+#require 'iconv'	#	for roo ?
+
 require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  antibiogram: one
+  species: one
+  drug: one
+  isolate: 1
+  value: 1
+
+two:
+  antibiogram: two
+  species: two
+  drug: two
+  isolate: 1
+  value: 1

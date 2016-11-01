@@ -1,0 +1,1 @@
+json.partial! "antibiograms/antibiogram", antibiogram: @antibiogram

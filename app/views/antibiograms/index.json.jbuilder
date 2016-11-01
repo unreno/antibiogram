@@ -1,0 +1,1 @@
+json.array! @antibiograms, partial: 'antibiograms/antibiogram', as: :antibiogram
