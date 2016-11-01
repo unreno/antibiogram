@@ -14,3 +14,20 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+$(function (){
+	$("table#antibiogram tr td").each(function (){
+		if( $(this).text() != '' )
+			$(this).css({
+				'background-color' : ( $(this).text() > 90 ) ? '#8F8' : 
+						( $(this).text() > 80 ) ? 'yellow' : 
+						( $(this).text() >= 0 ) ? '#F88' : ''
+			});
+	});
+
+	$("table#antibiogram tr th.isolate").each(function (){
+		if( $(this).text() < 30 )
+			$(this).parent().find('td').css({ 'opacity' : '0.4' })
+	});
+});

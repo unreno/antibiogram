@@ -7,7 +7,7 @@
 
 <% drugs = @antibiogram.drugs.uniq %>
 
-<table>
+<table id='antibiogram'>
 	<thead>
 		<tr>
 			<th>Bacterium</th>
@@ -19,10 +19,10 @@
 	</thead>
 
 	<tbody>
-		<% @antibiogram.isolates.uniq.each do |isolate| %>
+		<% @antibiogram.isolates.each do |isolate| %>
 			<tr>
 				<th><%= isolate.bacterium.name -%></th>
-				<th><%= isolate.value -%></th>
+				<th class='isolate'><%= isolate.value -%></th>
 				<% drugs.each do |drug| %>
 					<%# Should never actually be more than one, but just in case, get 'em all and join 'em. %>
 					<td><%= isolate.susceptibilities.where(:drug => drug).collect(&:value).join(',') -%></td>
