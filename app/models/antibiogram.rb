@@ -1,7 +1,7 @@
 class Antibiogram < ApplicationRecord
 	has_many :susceptibilities
 	has_many :drugs, :through => :susceptibilities
-	has_many :specieses, :through => :susceptibilities
+	has_many :bacteria, :through => :susceptibilities
 
 	def self.import(file)
 		spreadsheet = open_spreadsheet(file)

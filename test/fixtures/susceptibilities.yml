@@ -2,14 +2,14 @@
 
 one:
   antibiogram: one
-  species: one
+  bacterium: one
   drug: one
   isolate: 1
   value: 1
 
 two:
   antibiogram: two
-  species: two
+  bacterium: two
   drug: two
   isolate: 1
   value: 1

@@ -17,13 +17,13 @@ ActiveRecord::Schema.define(version: 20161101164800) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "drugs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "bacteria", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "species", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "drugs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -31,18 +31,18 @@ ActiveRecord::Schema.define(version: 20161101164800) do
 
   create_table "susceptibilities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "antibiogram_id"
-    t.integer  "species_id"
+    t.integer  "bacterium_id"
     t.integer  "drug_id"
     t.integer  "isolate"
     t.integer  "value"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.index ["antibiogram_id"], name: "index_susceptibilities_on_antibiogram_id", using: :btree
+    t.index ["bacterium_id"], name: "index_susceptibilities_on_bacterium_id", using: :btree
     t.index ["drug_id"], name: "index_susceptibilities_on_drug_id", using: :btree
-    t.index ["species_id"], name: "index_susceptibilities_on_species_id", using: :btree
   end
 
   add_foreign_key "susceptibilities", "antibiograms"
+  add_foreign_key "susceptibilities", "bacteria"
   add_foreign_key "susceptibilities", "drugs"
-  add_foreign_key "susceptibilities", "species"
 end
