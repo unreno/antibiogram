@@ -13,6 +13,7 @@ class Antibiogram < ApplicationRecord
 #			product.save!
 #		end
 
+		antibiogram = Antibiogram.create
 		searching_for_drugs=true
 		drug_names=[]
 		spreadsheet.each do |row|
@@ -34,9 +35,12 @@ class Antibiogram < ApplicationRecord
 					next unless name.present?	#	drug name line can start with a couple blank cells
 					next unless row_hash[name].present?	#	cell could be empty
 
-
 					drug = Drug.find_by_name(name) || Drug.create(:name => name)
+					bacterium = Bacterium.find_by_name(bacteria_name) || Bacterium.create(:name => bacteria_name)
 					puts "Create susceptibility #{bacteria_name}, #{isolate}, #{name}, #{row_hash[name]}"
+					Susceptibility.create!(:antibiogram => antibiogram,
+						:drug => drug, :bacterium => bacterium,
+						:isolate => isolate, :value => row_hash[name])
 
 
 
