@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161101164800) do
+ActiveRecord::Schema.define(version: 20161101200738) do
 
   create_table "antibiograms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -30,20 +30,28 @@ ActiveRecord::Schema.define(version: 20161101164800) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "susceptibilities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "isolates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "antibiogram_id"
     t.integer  "bacterium_id"
-    t.integer  "drug_id"
-    t.integer  "isolate"
     t.integer  "value"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.index ["antibiogram_id"], name: "index_susceptibilities_on_antibiogram_id", using: :btree
-    t.index ["bacterium_id"], name: "index_susceptibilities_on_bacterium_id", using: :btree
-    t.index ["drug_id"], name: "index_susceptibilities_on_drug_id", using: :btree
+    t.index ["antibiogram_id"], name: "index_isolates_on_antibiogram_id", using: :btree
+    t.index ["bacterium_id"], name: "index_isolates_on_bacterium_id", using: :btree
   end
 
-  add_foreign_key "susceptibilities", "antibiograms"
-  add_foreign_key "susceptibilities", "bacteria"
+  create_table "susceptibilities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "isolate_id"
+    t.integer  "drug_id"
+    t.integer  "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["drug_id"], name: "index_susceptibilities_on_drug_id", using: :btree
+    t.index ["isolate_id"], name: "index_susceptibilities_on_isolate_id", using: :btree
+  end
+
+  add_foreign_key "isolates", "antibiograms"
+  add_foreign_key "isolates", "bacteria"
   add_foreign_key "susceptibilities", "drugs"
+  add_foreign_key "susceptibilities", "isolates"
 end

@@ -5,5 +5,33 @@
 	<%= @antibiogram.name %>
 </p>
 
+<% drugs = @antibiogram.drugs.uniq %>
+
+<table>
+	<thead>
+		<tr>
+			<th>Bacterium</th>
+			<th>Isolate</th>
+			<% drugs.each do |drug| %>
+				<th><%= drug.name -%></th>
+			<% end %>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @antibiogram.isolates.uniq.each do |isolate| %>
+			<tr>
+				<th><%= isolate.bacterium.name -%></th>
+				<th><%= isolate.value -%></th>
+				<% drugs.each do |drug| %>
+					<%# Should never actually be more than one, but just in case, get 'em all and join 'em. %>
+					<td><%= isolate.susceptibilities.where(:drug => drug).collect(&:value).join(',') -%></td>
+				<% end %>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+
 <%= link_to 'Edit', edit_antibiogram_path(@antibiogram) %> |
 <%= link_to 'Back', antibiograms_path %>

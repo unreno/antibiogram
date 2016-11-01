@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  isolate: one
-  drug: one
+  antibiogram: one
+  bacterium: one
   value: 1
 
 two:
-  isolate: two
-  drug: two
+  antibiogram: two
+  bacterium: two
   value: 1

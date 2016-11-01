@@ -34,7 +34,8 @@ Things you may want to cover:
 rails generate scaffold Antibiogram
 rails generate model Bacterium name:string
 rails generate model Drug name:string
-rails generate model Susceptibility antibiogram:references bacterium:references drug:references isolate:integer value:integer
+rails generate model Isolate antibiogram:references bacterium:references value:integer
+rails generate model Susceptibility isolate:references drug:references value:integer
 ```
 
 
