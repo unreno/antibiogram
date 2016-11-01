@@ -2,8 +2,8 @@ class AntibiogramsController < ApplicationController
 	before_action :set_antibiogram, only: [:show, :edit, :update, :destroy]
 
 	def import
-		Antibiogram.import(params[:file])
-		redirect_to root_url, notice: "Antibiogram imported."
+		antibiogram = Antibiogram.import(params[:file])
+		redirect_to antibiogram, notice: "Antibiogram imported."
 	end
 
 	# GET /antibiograms
