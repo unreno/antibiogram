@@ -13,11 +13,37 @@ class Antibiogram < ApplicationRecord
 #			product.save!
 #		end
 
-#		spreadsheet.sheets.each do |sh|
-			spreadsheet.each do |r|
-				puts r.inspect
+		searching_for_drugs=true
+		drug_names=[]
+		spreadsheet.each do |row|
+			if searching_for_drugs
+				if row[3].present? and row[3] != '%'
+					drug_names = row
+					searching_for_drugs=false
+					next
+				end
+			else
+#				break if row[0].blank?
+				#	some spreadsheets have a blank line in the data cells so don't break.
+				#	Skip if no bacteria name and isolate.
+				next if row[0].blank? and row[1].blank?
+				row_hash = Hash[[drug_names, row].transpose]
+				bacteria_name = row[0]
+				isolate = row[1]
+				drug_names.each do |name|
+					next unless name.present?	#	drug name line can start with a couple blank cells
+					next unless row_hash[name].present?	#	cell could be empty
+
+
+					drug = Drug.find_by_name(name) || Drug.create(:name => name)
+					puts "Create susceptibility #{bacteria_name}, #{isolate}, #{name}, #{row_hash[name]}"
+
+
+
+
+				end
 			end
-#		end
+		end
 
 	end
 
