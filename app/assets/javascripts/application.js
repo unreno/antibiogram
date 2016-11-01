@@ -28,6 +28,6 @@ $(function (){
 
 	$("table#antibiogram tr th.isolate").each(function (){
 		if( $(this).text() < 30 )
-			$(this).parent().find('td').css({ 'opacity' : '0.4' })
+			$(this).parent().find('td').css({ 'opacity' : '0.4' });
 	});
 });
