@@ -38,5 +38,9 @@ rails generate model Isolate antibiogram:references bacterium:references value:i
 rails generate model Susceptibility isolate:references drug:references value:integer
 ```
 
+```Ruby
+Bacterium.first.isolates.collect(&:susceptibilities).flatten.collect{|s| [s.value,s.drug.name] }.sort
+```
+
 
 
